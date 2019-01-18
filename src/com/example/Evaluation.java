@@ -1,5 +1,6 @@
 package com.example;
 
+
 /**
  * Created by zilles on 8/31/17.
  *
@@ -11,4 +12,5 @@ public enum Evaluation {
     Xwins, /* valid board, and the game was won by player X */
     Owins, /* valid board, and the game was won by player Y */
     UnreachableState /* string describes a board, but not a board state that is reachable from a valid game */
+
 }
