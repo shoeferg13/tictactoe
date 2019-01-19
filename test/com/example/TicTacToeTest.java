@@ -4,12 +4,13 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by ________
+ * Created by srf3
  */
 public class TicTacToeTest {
     //InvalidInput tests
     @Test
     public void checkProperLength() throws Exception {
+        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard(null));
         assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard(""));
         assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("."));
         assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard(".."));
