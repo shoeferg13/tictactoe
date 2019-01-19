@@ -18,7 +18,7 @@ public class TicTacToe {
                 oCount++;
             }
         }
-        if (xCount < oCount) {
+        if (xCount < oCount || xCount - 1 > oCount) {
             return Evaluation.UnreachableState;
         }
         // make string into 2D matrix
@@ -79,6 +79,9 @@ public class TicTacToe {
                     diagOWin++;
                 }
             }
+        }
+        if ((horizXWin == 1 && horizOWin == 1) || (horizOWin == 1 && vertXWin == 1) || (vertOWin == 1&& vertXWin == 1)) {
+            return Evaluation.UnreachableState;
         }
         if (horizXWin == 1 || vertXWin == 1 || diagXWin == 1) {
             return Evaluation.Xwins;

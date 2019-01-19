@@ -9,23 +9,32 @@ import static org.junit.Assert.assertEquals;
 public class TicTacToeTest {
     //InvalidInput tests
     @Test
-    public void checkProperLength() throws Exception {
-        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard(null));
+    public void checkEmptyString() throws Exception {
         assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard(""));
-        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("."));
-        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard(".."));
-        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("..."));
-        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("...."));
-        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("....."));
-        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("......"));
-        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("......."));
-        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("........"));
+    }
+
+    @Test
+    public void checkNull() throws Exception {
+        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard(null));
+    }
+
+    @Test
+    public void checkTooShortString() throws Exception {
+        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("XO."));
+    }
+    @Test
+    public void checkTooLongString() throws Exception {
+        assertEquals(Evaluation.InvalidInput, TicTacToe.evaluateBoard("XO.XOXOXOXOX.......X"));
     }
 
     //NoWinner tests
     @Test
     public void simpleNoWinnerBoard() throws Exception {
         assertEquals(Evaluation.NoWinner, TicTacToe.evaluateBoard("O...X.X.."));
+    }
+    @Test
+    public void complexNoWinnerBoard() throws Exception {
+        assertEquals(Evaluation.NoWinner, TicTacToe.evaluateBoard("XOXXOXOXO"));
     }
 
     //XWins tests
@@ -70,7 +79,17 @@ public class TicTacToeTest {
     @Test
     public void moreOsThanXs() throws Exception {
         assertEquals(Evaluation.UnreachableState, TicTacToe.evaluateBoard("XXXXOOOOO"));
-        assertEquals(Evaluation.UnreachableState, TicTacToe.evaluateBoard("XXXOOOO.."));
-
+    }
+    @Test
+    public void multipleHorizWinners() throws Exception {
+        assertEquals(Evaluation.UnreachableState, TicTacToe.evaluateBoard("XXX...OOO"));
+    }
+    @Test
+    public void multipleVertWinners() throws Exception {
+        assertEquals(Evaluation.UnreachableState, TicTacToe.evaluateBoard("X.OX.OX.O"));
+    }
+    @Test
+    public void tooManyXs() throws Exception {
+        assertEquals(Evaluation.UnreachableState, TicTacToe.evaluateBoard("XX.XOOX.."));
     }
 }
