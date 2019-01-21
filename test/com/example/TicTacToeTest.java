@@ -36,6 +36,10 @@ public class TicTacToeTest {
     public void complexNoWinnerBoard() throws Exception {
         assertEquals(Evaluation.NoWinner, TicTacToe.evaluateBoard("XOXXOXOXO"));
     }
+    @Test
+    public void emptyNoWinnerBoard() throws Exception {
+        assertEquals(Evaluation.NoWinner, TicTacToe.evaluateBoard("........."));
+    }
 
     //XWins tests
     @Test

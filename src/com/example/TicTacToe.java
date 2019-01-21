@@ -10,6 +10,7 @@ public class TicTacToe {
         int xCount = 0;
         int oCount = 0;
         char[] board = boardState.toLowerCase().toCharArray();
+        // count xs and os
         for (int i = 0; i < board.length; i++) {
             if (board[i] == 'x') {
                 xCount++;
@@ -18,6 +19,7 @@ public class TicTacToe {
                 oCount++;
             }
         }
+        // check for unreachable state
         if (xCount < oCount || xCount - 1 > oCount) {
             return Evaluation.UnreachableState;
         }
@@ -80,9 +82,11 @@ public class TicTacToe {
                 }
             }
         }
-        if ((horizXWin == 1 && horizOWin == 1) || (horizOWin == 1 && vertXWin == 1) || (vertOWin == 1&& vertXWin == 1)) {
+        //check for unreachable state
+        if ((horizXWin == 1 && horizOWin == 1) || (horizOWin == 1 && vertXWin == 1) || (vertOWin == 1 && vertXWin == 1)) {
             return Evaluation.UnreachableState;
         }
+        // check for a win
         if (horizXWin == 1 || vertXWin == 1 || diagXWin == 1) {
             return Evaluation.Xwins;
         }
